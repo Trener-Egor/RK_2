@@ -29,9 +29,36 @@
 
 индекс пуст, но есть неотслеживаемые файлы
 (используйте «git add», чтобы проиндексировать их)
+> git add . && git commit -m "first commit"
+[master (корневой коммит) 0d2adad] first commit
+ 2 files changed, 38 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 REPORT.md
+> git branch -M main 
+> git remote add origin https://github.com/Trener-Egor/RK_2.git
+> git push origin main
+Перечисление объектов: 4, готово.
+Подсчет объектов: 100% (4/4), готово.
+При сжатии изменений используется до 4 потоков
+Сжатие объектов: 100% (3/3), готово.
+Запись объектов: 100% (4/4), 994 байта | 76.00 КиБ/с, готово.
+Всего 4 (изменений 0), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+To https://github.com/Trener-Egor/RK_2.git
+ * [new branch]      main -> main
+```
+
+## Add c++ source file
+```
+
 
 
 
 
 ```
+
+
+
+
+
+
 
