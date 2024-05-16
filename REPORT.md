@@ -228,14 +228,73 @@ else()
 endif()
 
 # Исполняемый файл
-add_executable(rk_2 ./source/pattern_memento.cpp) 
+add_executable(rk_2 ./source/main.cpp) 
 target_link_libraries(rk_2 GTest::gtest GTest::gtest_main)
->
->
->
+> mkdir build
+> cmake -H. -Bbuild
+-- GTest found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/egor/Trener-Egor/workspace/rk_2/build
+> cmake --build build
+[ 50%] Building CXX object CMakeFiles/rk_2.dir/source/main.cpp.o
+[100%] Linking CXX executable rk_2
+[100%] Built target rk_2
+> cd build && ./rk_2
+TIMP's RK_2
+2
+1
+3
+[==========] Running 3 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from MementoTest
+[ RUN      ] MementoTest.ValueIsCorrect
+[       OK ] MementoTest.ValueIsCorrect (0 ms)
+[----------] 1 test from MementoTest (0 ms total)
 
+[----------] 1 test from OriginatorTest
+[ RUN      ] OriginatorTest.SaveAndLoadMemento
+[       OK ] OriginatorTest.SaveAndLoadMemento (0 ms)
+[----------] 1 test from OriginatorTest (0 ms total)
+
+[----------] 1 test from CaretakerTest
+[ RUN      ] CaretakerTest.SaveAndLoadState
+[       OK ] CaretakerTest.SaveAndLoadState (0 ms)
+[----------] 1 test from CaretakerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 3 test suites ran. (0 ms total)
+[  PASSED  ] 3 tests.
+
+//Edit workflow
+> nvim .github/workflows/build.yml 
+      - name: Install GTest 
+        run: sudo apt-get install libgtest-dev
+> git add . && git commit -m "add GTest"
+[main ae54d0b] add GTest
+ 4 files changed, 154 insertions(+), 17 deletions(-)
+ rewrite CMakeLists.txt (62%)
+> git push origin main
+Перечисление объектов: 17, готово.
+Подсчет объектов: 100% (17/17), готово.
+При сжатии изменений используется до 4 потоков
+Сжатие объектов: 100% (6/6), готово.
+Запись объектов: 100% (9/9), 2.32 КиБ | 2.32 МиБ/с, готово.
+Всего 9 (изменений 3), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/Trener-Egor/RK_2.git
+   74a7d17..ae54d0b  main -> main
+> gh run list --workflow="TIMP RK_2 workflow" --repo="Trener-Egor/rk_2"
+STATUS  NAME                  WORKFLOW            BRANCH  EVENT  ID          ELAPSED  AGE
+✓       add GTest             TIMP RK_2 workflow  main    push   9108411348  22s      4m
+✓       cteate github action  TIMP RK_2 workflow  main    push   9107918743  25s      43m
+
+For details on a run, try: gh run view <run-id>
 
 ```
+
+
+
 
 
 
