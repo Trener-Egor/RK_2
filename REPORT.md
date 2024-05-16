@@ -89,11 +89,66 @@ Consolidate compiler generated dependencies of target rk_2
 2
 1
 3
+
+> git add . && git commit -m "create main.cpp"
+[main 68825f0] create main.cpp
+ 3 files changed, 119 insertions(+), 3 deletions(-)
+ create mode 100644 CMakeLists.txt
+ create mode 100644 source/main.cpp
+> git push origin main
+Перечисление объектов: 8, готово.
+Подсчет объектов: 100% (8/8), готово.
+При сжатии изменений используется до 4 потоков
+Сжатие объектов: 100% (5/5), готово.
+Запись объектов: 100% (6/6), 1.73 КиБ | 84.00 КиБ/с, готово.
+Всего 6 (изменений 1), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Trener-Egor/RK_2.git
+   4c0c63b..68825f0  main -> main
+> 
 ```
 
 ## Create GitHub Action 
 ```
+> mkdir -p .github/workflows
+> touch .github/workflows/build.yml 
+> nvim .github/workflows/build.yml
+name: TIMP RK_2 workflow
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Configure CMake
+        run: cmake -H. -Bbuild
+      
+      - name: Build project 
+        run: cmake --build build 
+      
+      - name: Run project
+        run: cd build && ./rk_2
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: rk_2_executable
+          path: build/rk_2
+> 
 
 
 

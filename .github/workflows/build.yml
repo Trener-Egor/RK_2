@@ -1,0 +1,35 @@
+name: TIMP RK_2 workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Configure CMake
+        run: cmake -H. -Bbuild
+      
+      - name: Build project 
+        run: cmake --build build 
+      
+      - name: Run project
+        run: cd build && ./rk_2
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: rk_2_executable
+          path: build/rk_2
