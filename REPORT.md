@@ -148,12 +148,94 @@ jobs:
         with:
           name: rk_2_executable
           path: build/rk_2
-> 
+> git add . && git commit -m "cteate github action"
+[main 74a7d17] cteate github action
+ 2 files changed, 91 insertions(+), 1 deletion(-)
+ create mode 100644 .github/workflows/build.yml
+> git push origin main
+Перечисление объектов: 8, готово.
+Подсчет объектов: 100% (8/8), готово.
+При сжатии изменений используется до 4 потоков
+Сжатие объектов: 100% (4/4), готово.
+Запись объектов: 100% (6/6), 1.46 КиБ | 1.46 МиБ/с, готово.
+Всего 6 (изменений 1), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Trener-Egor/RK_2.git
+   68825f0..74a7d17  main -> main
+ 
+> gh run list --workflow="TIMP RK_2 workflow" --repo="Trener-Egor/rk_2"
+STATUS  NAME                  WORKFLOW            BRANCH  EVENT  ID          ELAPSED  AGE
+✓       cteate github action  TIMP RK_2 workflow  main    push   9107918743  25s      2m
 
+For details on a run, try: gh run view <run-id>
+```
+
+## GTest
+```
+
+
+// Добавляем код в main.cpp 
+namespace jc {
+
+ TEST(MementoTest, ValueIsCorrect) {
+   Memento memento(5);
+   ASSERT_EQ(memento.Value(), 5);
+}
+
+TEST(OriginatorTest, SaveAndLoadMemento) {
+   Originator originator(10);
+   Memento memento = originator.ValueMemento();
+   
+   originator.SetValue(20);
+   originator.Load(memento);
+   
+   ASSERT_EQ(originator.ValueMemento().Value(), 10);
+}
+
+TEST(CaretakerTest, SaveAndLoadState) {
+   Caretaker caretaker;
+   Originator originator(30);
+   
+   caretaker.SetState("test", originator.ValueMemento());
+   originator.SetValue(40);
+
+   originator.Load(caretaker.State("test"));
+   
+   ASSERT_EQ(originator.ValueMemento().Value(), 30);
+ }
+
+}  // namespace jc
+
+// Добавляем код в функцию main
+
+::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+// Редактрируем CMakeLists.txt
+cmake_minimum_required(VERSION 3.10)
+
+project(rk_2)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_COMPILER g++)
+
+# Найти GTest
+find_package(GTest REQUIRED)
+if (TARGET GTest::gtest)
+  message(STATUS "GTest found")
+else()
+  message(FATAL_ERROR "GTest not found. Install GTest or use FetchContent.")
+endif()
+
+# Исполняемый файл
+add_executable(rk_2 ./source/pattern_memento.cpp) 
+target_link_libraries(rk_2 GTest::gtest GTest::gtest_main)
+>
+>
+>
 
 
 ```
-
 
 
 
