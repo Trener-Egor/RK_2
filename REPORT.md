@@ -4,7 +4,7 @@
 > cd Trener-Egor/workspace/
 > mkdir rk_2 && cd rk_2
 > git init
-^
+
 подсказка: Using 'master' as the name for the initial branch. This default branch name
 подсказка: is subject to change. To configure the initial branch name to use in all
 подсказка: of your new repositories, which will suppress this warning, call:
@@ -16,11 +16,14 @@
 подсказка: 
 подсказка: 	git branch -m <name>
 Инициализирован пустой репозиторий Git в /home/egor/Trener-Egor/workspace/rk_2/.git/
-^
+
 > gh repo create Trener-Egor/RK_2 --public
+
 ✓ Created repository Trener-Egor/RK_2 on GitHub
+
 > echo "# TIMP RK2" > README.md
 > git status
+
 Текущая ветка: master
 
 Еще нет коммитов
@@ -31,14 +34,18 @@
 
 индекс пуст, но есть неотслеживаемые файлы
 (используйте «git add», чтобы проиндексировать их)
+
 > git add . && git commit -m "first commit"
+
 [master (корневой коммит) 0d2adad] first commit
  2 files changed, 38 insertions(+)
  create mode 100644 README.md
  create mode 100644 REPORT.md
+
 > git branch -M main 
 > git remote add origin https://github.com/Trener-Egor/RK_2.git
 > git push origin main
+
 Перечисление объектов: 4, готово.
 Подсчет объектов: 100% (4/4), готово.
 Пtouch main.cpp
@@ -83,6 +90,7 @@ EOF
 -- Generating done
 -- Build files have been written to: /home/egor/Trener-Egor/workspace/rk_2/build
 > cmake --build build
+
 Consolidate compiler generated dependencies of target rk_2
 [ 50%] Building CXX object CMakeFiles/rk_2.dir/source/main.cpp.o
 [100%] Linking CXX executable rk_2
@@ -93,11 +101,14 @@ Consolidate compiler generated dependencies of target rk_2
 3
 
 > git add . && git commit -m "create main.cpp"
+
 [main 68825f0] create main.cpp
  3 files changed, 119 insertions(+), 3 deletions(-)
  create mode 100644 CMakeLists.txt
  create mode 100644 source/main.cpp
+
 > git push origin main
+
 Перечисление объектов: 8, готово.
 Подсчет объектов: 100% (8/8), готово.
 При сжатии изменений используется до 4 потоков
@@ -107,7 +118,6 @@ Consolidate compiler generated dependencies of target rk_2
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To https://github.com/Trener-Egor/RK_2.git
    4c0c63b..68825f0  main -> main
-> 
 ```
 
 ## Create GitHub Action 
@@ -115,6 +125,7 @@ To https://github.com/Trener-Egor/RK_2.git
 > mkdir -p .github/workflows
 > touch .github/workflows/build.yml 
 > nvim .github/workflows/build.yml
+
 name: TIMP RK_2 workflow
 
 on:
@@ -150,11 +161,13 @@ jobs:
         with:
           name: rk_2_executable
           path: build/rk_2
+
 > git add . && git commit -m "cteate github action"
 [main 74a7d17] cteate github action
  2 files changed, 91 insertions(+), 1 deletion(-)
  create mode 100644 .github/workflows/build.yml
 > git push origin main
+
 Перечисление объектов: 8, готово.
 Подсчет объектов: 100% (8/8), готово.
 При сжатии изменений используется до 4 потоков
@@ -166,6 +179,7 @@ To https://github.com/Trener-Egor/RK_2.git
    68825f0..74a7d17  main -> main
  
 > gh run list --workflow="TIMP RK_2 workflow" --repo="Trener-Egor/rk_2"
+
 STATUS  NAME                  WORKFLOW            BRANCH  EVENT  ID          ELAPSED  AGE
 ✓       cteate github action  TIMP RK_2 workflow  main    push   9107918743  25s      2m
 
@@ -174,8 +188,6 @@ For details on a run, try: gh run view <run-id>
 
 ## GTest
 ```
-
-
 // Добавляем код в main.cpp 
 namespace jc {
 
@@ -234,15 +246,20 @@ add_executable(rk_2 ./source/main.cpp)
 target_link_libraries(rk_2 GTest::gtest GTest::gtest_main)
 > mkdir build
 > cmake -H. -Bbuild
+
 -- GTest found
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/egor/Trener-Egor/workspace/rk_2/build
+
 > cmake --build build
+
 [ 50%] Building CXX object CMakeFiles/rk_2.dir/source/main.cpp.o
 [100%] Linking CXX executable rk_2
 [100%] Built target rk_2
+
 > cd build && ./rk_2
+
 TIMP's RK_2
 2
 1
@@ -273,10 +290,13 @@ TIMP's RK_2
       - name: Install GTest 
         run: sudo apt-get install libgtest-dev
 > git add . && git commit -m "add GTest"
+
 [main ae54d0b] add GTest
  4 files changed, 154 insertions(+), 17 deletions(-)
  rewrite CMakeLists.txt (62%)
+
 > git push origin main
+
 Перечисление объектов: 17, готово.
 Подсчет объектов: 100% (17/17), готово.
 При сжатии изменений используется до 4 потоков
@@ -286,7 +306,9 @@ TIMP's RK_2
 remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
 To https://github.com/Trener-Egor/RK_2.git
    74a7d17..ae54d0b  main -> main
+
 > gh run list --workflow="TIMP RK_2 workflow" --repo="Trener-Egor/rk_2"
+
 STATUS  NAME                  WORKFLOW            BRANCH  EVENT  ID          ELAPSED  AGE
 ✓       add GTest             TIMP RK_2 workflow  main    push   9108411348  22s      4m
 ✓       cteate github action  TIMP RK_2 workflow  main    push   9107918743  25s      43m
