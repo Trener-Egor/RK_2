@@ -4,6 +4,7 @@
 > cd Trener-Egor/workspace/
 > mkdir rk_2 && cd rk_2
 > git init
+^
 подсказка: Using 'master' as the name for the initial branch. This default branch name
 подсказка: is subject to change. To configure the initial branch name to use in all
 подсказка: of your new repositories, which will suppress this warning, call:
@@ -15,6 +16,7 @@
 подсказка: 
 подсказка: 	git branch -m <name>
 Инициализирован пустой репозиторий Git в /home/egor/Trener-Egor/workspace/rk_2/.git/
+^
 > gh repo create Trener-Egor/RK_2 --public
 ✓ Created repository Trener-Egor/RK_2 on GitHub
 > echo "# TIMP RK2" > README.md
